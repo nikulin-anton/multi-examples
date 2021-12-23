@@ -1,5 +1,5 @@
 import { ChangeDetectionStrategy, Component, Inject } from '@angular/core';
-import { APP_NAME_TOKEN } from '../../providers/app-name';
+import { APP_NAME_TOKEN } from '../../tokens/app-name';
 
 @Component({
   selector: 'app-header',
