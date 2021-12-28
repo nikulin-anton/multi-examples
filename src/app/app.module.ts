@@ -4,7 +4,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HeaderModule } from './components/header/header.module';
 import { APP_NAME } from './const/app-name';
-import { APP_NAME_TOKEN } from './tokens/app-name';
+import { APP_NAME_TOKEN } from './tokens/app-name.token';
 
 @NgModule({
   declarations: [AppComponent],
