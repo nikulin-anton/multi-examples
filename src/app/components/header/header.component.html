@@ -1,1 +1,7 @@
-<h1>{{ appName }}</h1>
+<h1 class="header">{{ appName }}</h1>
+
+<ul class="links">
+  <li *ngFor="let link of mainLinks" class="link">
+    <a [routerLink]="link.path">{{ link.name }}</a>
+  </li>
+</ul>

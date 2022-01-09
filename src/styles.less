@@ -7,6 +7,10 @@ body {
   background-color: var(--color-background);
   color: var(--color-text);
   font-family: Arial, Helvetica, sans-serif;
+
+  * {
+    transition: 0.2s;
+  }
 }
 
 h1 {
@@ -15,4 +19,13 @@ h1 {
 
 h2 {
   font-size: 36px;
+}
+
+a {
+  color: var(--color-link);
+  text-decoration: none;
+
+  &:hover {
+    color: var(--color-link-hover);
+  }
 }
