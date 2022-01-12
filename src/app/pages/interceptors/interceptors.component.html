@@ -1,0 +1,27 @@
+<h2 class="tui-text_h2">Интерсепторы</h2>
+
+<div class="content">
+  <div class="request">
+    <h3 class="tui-text_h3 tui-space_top-0">Запрос</h3>
+    <button
+      tuiButton
+      type="button"
+      [showLoader]="!!(isLoading$ | async)"
+      (click)="sendRequest()"
+    >
+      Отправить запрос
+    </button>
+
+    <ul class="tui-list tui-space_top-5">
+      <li *ngFor="let step of steps$ | async" class="tui-list__item">
+        {{ step }}
+      </li>
+    </ul>
+  </div>
+  <div class="responce">
+    <h3 class="tui-text_h3 tui-space_top-0">Ответ</h3>
+    <code class="code">
+      {{ result$ | async | json }}
+    </code>
+  </div>
+</div>
