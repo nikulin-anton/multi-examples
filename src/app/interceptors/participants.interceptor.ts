@@ -16,11 +16,12 @@ export class ParticipantsInterceptor implements HttpInterceptor {
     req: HttpRequest<any>,
     next: HttpHandler
   ): Observable<HttpEvent<any>> {
-    const updatedReq = req.clone({ params: req.params.set('participants', 2) });
+    const NAME = 'participants';
+    const VALUE = 2;
+    const stepValue = `Добавили к запросу параметр ${NAME}=${VALUE}`;
+    const updatedReq = req.clone({ params: req.params.set(NAME, VALUE) });
 
-    this.requestStepsService.addStep(
-      'Добавили к запросу параметр participants=2'
-    );
+    this.requestStepsService.addStep(stepValue);
 
     return next.handle(updatedReq);
   }

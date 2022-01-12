@@ -16,9 +16,12 @@ export class TypeInterceptor implements HttpInterceptor {
     req: HttpRequest<any>,
     next: HttpHandler
   ): Observable<HttpEvent<any>> {
+    const NAME = 'type';
+    const VALUE = 'social';
+    const stepValue = `Добавили к запросу параметр ${NAME}=${VALUE}`;
     const updatedReq = req.clone({ params: req.params.set('type', 'social') });
 
-    this.requestStepsService.addStep('Добавили к запросу параметр type=social');
+    this.requestStepsService.addStep(stepValue);
 
     return next.handle(updatedReq);
   }
