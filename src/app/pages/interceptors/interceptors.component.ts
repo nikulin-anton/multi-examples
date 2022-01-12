@@ -1,5 +1,6 @@
-import { ChangeDetectionStrategy, Component } from '@angular/core';
-import { Subject, tap } from 'rxjs';
+import { ChangeDetectionStrategy, Component, OnDestroy } from '@angular/core';
+import { map, Subject, tap } from 'rxjs';
+import { ActivityItem } from 'src/app/interfaces/activity-item';
 import { BoredApiService } from './services/bored.api.service';
 import { RequestStepsService } from './services/request-steps.service';
 
@@ -9,8 +10,9 @@ import { RequestStepsService } from './services/request-steps.service';
   styleUrls: ['./interceptors.component.less'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class InterceptorsComponent {
+export class InterceptorsComponent implements OnDestroy {
   readonly steps$ = this.requestStepsService.steps$;
+  readonly result$ = new Subject<ActivityItem[]>();
 
   constructor(
     private readonly boredApiService: BoredApiService,
@@ -20,8 +22,17 @@ export class InterceptorsComponent {
   sendRequest() {
     this.requestStepsService.clearSteps();
 
-    this.boredApiService.getActivities().subscribe((result) => {
-      console.log(result);
-    });
+    this.boredApiService
+      .getActivities()
+      .pipe(
+        tap(() => this.requestStepsService.addStep('Обработали результат')),
+        map((result) => this.result$.next(result)),
+        tap(() => this.requestStepsService.addStep('Вывели'))
+      )
+      .subscribe();
+  }
+
+  ngOnDestroy() {
+    this.requestStepsService.clearSteps();
   }
 }
