@@ -1,6 +1,7 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { Subject, tap } from 'rxjs';
 import { BoredApiService } from './services/bored.api.service';
+import { RequestStepsService } from './services/request-steps.service';
 
 @Component({
   selector: 'app-interceptors',
@@ -9,24 +10,18 @@ import { BoredApiService } from './services/bored.api.service';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class InterceptorsComponent {
-  private readonly steps: string[] = [];
-  readonly steps$ = new Subject<string[]>();
+  readonly steps$ = this.requestStepsService.steps$;
 
-  constructor(private readonly boredApiService: BoredApiService) {}
+  constructor(
+    private readonly boredApiService: BoredApiService,
+    private readonly requestStepsService: RequestStepsService
+  ) {}
 
   sendRequest() {
-    this.addStep('Отправили запрос');
+    this.requestStepsService.clearSteps();
 
-    this.boredApiService
-      .getActivities()
-      .pipe(tap(() => this.addStep('Получили ответ')))
-      .subscribe((result) => {
-        console.log(result);
-      });
-  }
-
-  private addStep(step: string) {
-    this.steps.push(step);
-    this.steps$.next(this.steps);
+    this.boredApiService.getActivities().subscribe((result) => {
+      console.log(result);
+    });
   }
 }
