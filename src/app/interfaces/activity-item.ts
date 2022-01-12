@@ -1,9 +1,9 @@
 export interface ActivityItem {
-  accessibility: number;
-  activity: string;
-  key: string;
-  link: string;
-  participants: number;
-  price: number;
-  type: string;
+  readonly accessibility: number;
+  readonly activity: string;
+  readonly key: string;
+  readonly link: string;
+  readonly participants: number;
+  readonly price: number;
+  readonly type: string;
 }

@@ -19,7 +19,7 @@ export class TypeInterceptor implements HttpInterceptor {
     const NAME = 'type';
     const VALUE = 'social';
     const stepValue = `Добавили к запросу параметр ${NAME}=${VALUE}`;
-    const updatedReq = req.clone({ params: req.params.set('type', 'social') });
+    const updatedReq = req.clone({ params: req.params.set(NAME, VALUE) });
 
     this.requestStepsService.addStep(stepValue);
 

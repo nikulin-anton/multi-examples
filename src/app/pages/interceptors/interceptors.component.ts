@@ -1,6 +1,6 @@
 import { ChangeDetectionStrategy, Component, OnDestroy } from '@angular/core';
 import { BehaviorSubject, map, Subject, tap } from 'rxjs';
-import { ActivityItem } from 'src/app/interfaces/activity-item';
+import { ActivityItem } from '../../interfaces/activity-item';
 import { BoredApiService } from '../../services/bored.api.service';
 import { RequestStepsService } from '../../services/request-steps.service';
 
