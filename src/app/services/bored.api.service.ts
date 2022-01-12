@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, tap } from 'rxjs';
-import { ActivityItem } from '../../../interfaces/activity-item';
+import { ActivityItem } from '../interfaces/activity-item';
 import { RequestStepsService } from './request-steps.service';
 
 @Injectable()

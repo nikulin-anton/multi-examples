@@ -1,8 +1,8 @@
 import { ChangeDetectionStrategy, Component, OnDestroy } from '@angular/core';
-import { map, Subject, tap } from 'rxjs';
+import { BehaviorSubject, map, Subject, tap } from 'rxjs';
 import { ActivityItem } from 'src/app/interfaces/activity-item';
-import { BoredApiService } from './services/bored.api.service';
-import { RequestStepsService } from './services/request-steps.service';
+import { BoredApiService } from '../../services/bored.api.service';
+import { RequestStepsService } from '../../services/request-steps.service';
 
 @Component({
   selector: 'app-interceptors',
@@ -13,6 +13,7 @@ import { RequestStepsService } from './services/request-steps.service';
 export class InterceptorsComponent implements OnDestroy {
   readonly steps$ = this.requestStepsService.steps$;
   readonly result$ = new Subject<ActivityItem[]>();
+  readonly isLoading$ = new BehaviorSubject<boolean>(false);
 
   constructor(
     private readonly boredApiService: BoredApiService,
@@ -21,13 +22,14 @@ export class InterceptorsComponent implements OnDestroy {
 
   sendRequest() {
     this.requestStepsService.clearSteps();
+    this.isLoading$.next(true);
 
     this.boredApiService
       .getActivities()
       .pipe(
-        tap(() => this.requestStepsService.addStep('Обработали результат')),
         map((result) => this.result$.next(result)),
-        tap(() => this.requestStepsService.addStep('Вывели'))
+        tap(() => this.requestStepsService.addStep('Вывели результат')),
+        tap(() => this.isLoading$.next(false))
       )
       .subscribe();
   }

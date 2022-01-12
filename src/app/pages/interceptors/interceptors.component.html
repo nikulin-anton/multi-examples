@@ -3,7 +3,12 @@
 <div class="content">
   <div class="request">
     <h3 class="tui-text_h3 tui-space_top-0">Запрос</h3>
-    <button tuiButton type="button" (click)="sendRequest()">
+    <button
+      tuiButton
+      type="button"
+      [showLoader]="!!(isLoading$ | async)"
+      (click)="sendRequest()"
+    >
       Отправить запрос
     </button>
 
