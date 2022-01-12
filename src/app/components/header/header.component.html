@@ -1,7 +1,11 @@
-<h1 class="header">{{ appName }}</h1>
+<h1 class="tui-text_h1">{{ appName }}</h1>
 
-<ul class="links">
-  <li *ngFor="let link of mainLinks" class="link">
-    <a [routerLink]="link.path">{{ link.name }}</a>
-  </li>
-</ul>
+<tui-tabs>
+  <a
+    *ngFor="let link of mainLinks"
+    tuiTab
+    [routerLink]="link.path"
+    routerLinkActive
+    >{{ link.name }}</a
+  >
+</tui-tabs>
