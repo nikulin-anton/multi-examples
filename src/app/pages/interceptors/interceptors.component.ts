@@ -1,16 +1,18 @@
-import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
+import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { BoredApiService } from 'src/app/services/bored.api.service';
 
 @Component({
   selector: 'app-interceptors',
   templateUrl: './interceptors.component.html',
   styleUrls: ['./interceptors.component.less'],
-  changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class InterceptorsComponent implements OnInit {
+export class InterceptorsComponent {
+  constructor(private readonly boredApiService: BoredApiService) {}
 
-  constructor() { }
-
-  ngOnInit(): void {
+  sendRequest() {
+    this.boredApiService.getActivities().subscribe((result) => {
+      console.log(result);
+    });
   }
-
 }

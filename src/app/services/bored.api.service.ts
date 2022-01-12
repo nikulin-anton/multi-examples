@@ -1,5 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { Observable } from 'rxjs';
+import { ActivityItem } from '../interfaces/activity-item';
 
 @Injectable({ providedIn: 'root' })
 export class BoredApiService {
@@ -7,7 +9,7 @@ export class BoredApiService {
 
   constructor(private readonly httpClient: HttpClient) {}
 
-  getActivities() {
-    this.httpClient.get(`${this.URL}/activity`);
+  getActivities(): Observable<ActivityItem[]> {
+    return this.httpClient.get<ActivityItem[]>(`${this.URL}/activity`);
   }
 }
