@@ -1,9 +1,9 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { ActivityItem } from '../interfaces/activity-item';
+import { ActivityItem } from '../../../interfaces/activity-item';
 
-@Injectable({ providedIn: 'root' })
+@Injectable()
 export class BoredApiService {
   private readonly URL = 'https://www.boredapi.com/api';
 
