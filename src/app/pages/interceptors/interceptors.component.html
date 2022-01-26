@@ -11,12 +11,7 @@
     >
       Отправить запрос
     </button>
-
-    <ul class="tui-list tui-space_top-5">
-      <li *ngFor="let step of steps$ | async" class="tui-list__item">
-        {{ step }}
-      </li>
-    </ul>
+    <app-steps class="tui-space_top-5" [steps$]="steps$"></app-steps>
   </div>
   <div class="responce">
     <h3 class="tui-text_h3 tui-space_top-0">Ответ</h3>
