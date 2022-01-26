@@ -15,7 +15,7 @@ import { HeaderModule } from './components/header/header.module';
 import { APP_NAME } from './const/app-name';
 import { httpInterceptorProviders } from './providers/http-interceptors.providers';
 import { BoredApiService } from './services/bored.api.service';
-import { RequestStepsService } from './services/request-steps.service';
+import { StepsService } from './services/steps.service';
 import { APP_NAME_TOKEN } from './tokens/app-name.token';
 
 @NgModule({
@@ -34,7 +34,7 @@ import { APP_NAME_TOKEN } from './tokens/app-name.token';
     { provide: APP_NAME_TOKEN, useValue: APP_NAME },
     { provide: TUI_SANITIZER, useClass: NgDompurifySanitizer },
     BoredApiService,
-    RequestStepsService,
+    StepsService,
     ...httpInterceptorProviders,
   ],
   bootstrap: [AppComponent],

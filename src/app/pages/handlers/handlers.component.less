@@ -1,3 +1,13 @@
 :host {
   display: block;
 }
+
+.content {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-gap: 10px;
+}
+
+.tui-list__item:before {
+  background-color: var(--tui-success-fill);
+}

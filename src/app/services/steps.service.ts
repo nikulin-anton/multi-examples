@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { ReplaySubject } from 'rxjs';
 
 @Injectable()
-export class RequestStepsService {
+export class StepsService {
   readonly steps$ = new ReplaySubject<string[]>();
   private readonly steps: string[] = [];
 

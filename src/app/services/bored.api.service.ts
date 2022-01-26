@@ -2,7 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, tap } from 'rxjs';
 import { ActivityItem } from '../interfaces/activity-item';
-import { RequestStepsService } from './request-steps.service';
+import { StepsService } from './steps.service';
 
 @Injectable()
 export class BoredApiService {
@@ -10,14 +10,14 @@ export class BoredApiService {
 
   constructor(
     private readonly httpClient: HttpClient,
-    private readonly requestStepsService: RequestStepsService
+    private readonly stepsService: StepsService
   ) {}
 
   getActivities(): Observable<ActivityItem[]> {
-    this.requestStepsService.addStep('Отправили запрос');
+    this.stepsService.addStep('Отправили запрос');
 
     return this.httpClient
       .get<ActivityItem[]>(`${this.URL}/activity`)
-      .pipe(tap(() => this.requestStepsService.addStep('Получили ответ')));
+      .pipe(tap(() => this.stepsService.addStep('Получили ответ')));
   }
 }

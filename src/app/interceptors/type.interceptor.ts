@@ -6,11 +6,11 @@ import {
 } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { RequestStepsService } from '../services/request-steps.service';
+import { StepsService } from '../services/steps.service';
 
 @Injectable()
 export class TypeInterceptor implements HttpInterceptor {
-  constructor(private readonly requestStepsService: RequestStepsService) {}
+  constructor(private readonly stepsService: StepsService) {}
 
   intercept(
     req: HttpRequest<any>,
@@ -21,7 +21,7 @@ export class TypeInterceptor implements HttpInterceptor {
     const stepValue = `Добавили к запросу параметр ${NAME}=${VALUE}`;
     const updatedReq = req.clone({ params: req.params.set(NAME, VALUE) });
 
-    this.requestStepsService.addStep(stepValue);
+    this.stepsService.addStep(stepValue);
 
     return next.handle(updatedReq);
   }
