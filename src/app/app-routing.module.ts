@@ -3,6 +3,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { MAIN_LINKS_TOKEN } from './tokens/main-links.token';
 
 const INTERCEPTORS_PATH = 'interceptors';
+const HANDERS_PATH = 'handlers';
 
 const routes: Routes = [
   {
@@ -11,6 +12,11 @@ const routes: Routes = [
       import('./pages/interceptors/interceptors.module').then(
         (m) => m.InterceptorsModule
       ),
+  },
+  {
+    path: HANDERS_PATH,
+    loadChildren: () =>
+      import('./pages/handlers/handlers.module').then((m) => m.HandlersModule),
   },
 ];
 
@@ -22,6 +28,7 @@ const routes: Routes = [
       useValue: [
         { name: 'Главная', path: '' },
         { name: 'Работа с интерсепторами', path: INTERCEPTORS_PATH },
+        { name: 'Работа с обработчиками', path: HANDERS_PATH },
       ],
     },
   ],

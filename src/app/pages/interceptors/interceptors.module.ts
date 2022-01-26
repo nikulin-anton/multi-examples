@@ -7,6 +7,5 @@ import { InterceptorsComponent } from './interceptors.component';
 @NgModule({
   declarations: [InterceptorsComponent],
   imports: [CommonModule, InterceptorsRoutingModule, TuiButtonModule],
-  exports: [InterceptorsComponent],
 })
 export class InterceptorsModule {}
